@@ -27,7 +27,9 @@ ion-content,padding.scroll-content.ionic-scroll.has-header.has-tabs {
     padding:10px 30px 10px 10px;
 
 }
-
+.bar-stable .button.button-clear{
+  color: white;
+}
 .bar.bar-stable .title {
     font-family:Pacifico;
     font-size:30px;
