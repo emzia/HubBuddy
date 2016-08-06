@@ -30,7 +30,7 @@ ion-content,padding.scroll-content.ionic-scroll.has-header.has-tabs {
 .bar.bar-stable .title {
     font-family:Pacifico;
     font-size:30px;
-    text-shadow: 1px 1px 10px black;
+    text-shadow: 1px 1px 6px #e6b500;
     color:white;
     height:60px;
 }
