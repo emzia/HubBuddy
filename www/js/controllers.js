@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
   $scope.remove = function(deploy) {
     Deployments.remove(deploy);
   };
-  
+
 })
 
 .controller('deployDetailCtrl', function($scope, $stateParams, Deployments, $firebase) {
@@ -32,21 +32,24 @@ angular.module('starter.controllers', [])
 
   function saveData(name, email) {
       firebase.database().ref('Technology/').push({
+        // date: date,
           name: name,
-          email: email,
+          email: email
+        //  assistant: ,
+
       }, function (error) {
           console.log(error);
       });
   }
-  
+
   $scope.saveData = function (email) {
       saveData($scope.input.name, $scope.input.email);
    }
   $scope.getAllData = function () {
        getAllData();
    }
-    
-  
+
+
 })
 
 .controller('AccountCtrl', function($scope) {
@@ -54,4 +57,3 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 });
- 

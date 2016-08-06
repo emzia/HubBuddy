@@ -31,7 +31,7 @@ body{
 .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-content .item-image {
     border-radius:0;
 }
-.item, .item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p, .item-content, .item-content h1, .item-content h2, 
+.item, .item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p, .item-content, .item-content h1, .item-content h2,
 .item-content h3, .item-content h4, .item-content h5, .item-content h6, .item-content p {
     color:white;
 }
@@ -52,7 +52,7 @@ body{
     font-family:Teko;
 }
 .input-label {
-    font-size:18px;  
+    font-size:18px;
 }
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
  input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
@@ -60,4 +60,11 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
     font-family:Teko;
     color:red;
     font-size:18px;
+}
+
+.button{
+  background:linear-gradient(to bottom, #db0c16 , black 80%, #db0c16);
+  font-family:Fredoka One;
+  text-transform: uppercase;
+  font-size: 11px;
 }

@@ -7,21 +7,23 @@
 <ion-view view-title="{{deploy.name}}">
   <ion-content class="padding">
       <p>
+        <button class="button button-full button-positive" onClick ="scanBarcode()">Scan Asset QR-Code</button>
         <div class="list">
             <label class="item item-input">
+                <span class="input-label">Date</span>
+                <input type="datetime-local" ng-model="input.date"/>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Name</span>
+                <input type="text" id="ItemName" ng-model="input.name"/>
+            </label>
+            <label class="item item-input">
                 <span class="input-label">Email</span>
-                <input type="text" id="ItemName" value="" ng-model="input.email" />
-              </label>
-              <label class="item item-input">
-                  <span class="input-label">Name</span>
-                  <input type="text" id="ItemName" value="" ng-model="input.name"/>
-              </label>
-              <label class="item item-input">
-                  <button class="button button-full button-positive" onClick ="scanBarcode()">Scan Asset</button>
+                <input type="email" id="ItemName" ng-model="input.email" />
               </label>
               <label class="item item-input">
                   <span class="input-label">Assistant Initials</span>
-                  <input type="text" id="" value="" ng-model="" />
+                  <input type="text" id="a_initial" />
               </label>
           </div>
       <button ng-click="saveData()" class="button button-full button-assertive">
@@ -46,8 +48,7 @@
             </ion-item>
 
         </ion-list>
-        
+
     </p>
   </ion-content>
 </ion-view>
- 
