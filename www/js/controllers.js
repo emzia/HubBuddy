@@ -19,31 +19,42 @@ angular.module('starter.controllers', [])
 })
 
 .controller('deployDetailCtrl', function($scope, $stateParams, Deployments, $firebase) {
-  $scope.deploy = Deployments.get($stateParams.deployId);
+  $scope.deploy = Deployments.get($stateParams.deployId); //deployment type: Technology, Pool Hall, etc.
   //var BackHub = monaca.cloud.Collection("Technology");
   //console.log(BackHub);
    // Intialize the "[DEFAULT]" App
   $scope.input = {};
   function getAllData() {
       firebase.database().ref('Technology/').on('value', function (snapshot) {
-          console.log(snapshot.val());
+          // console.log(snapshot.val());
       });
   }
 
-  function saveData(name, email) {
-      firebase.database().ref('Technology/').push({
-        // date: date,
-          name: name,
-          email: email
-        //  assistant: ,
+  function saveData(date, name, email, ai) {
+    var keyArray = [];
 
-      }, function (error) {
-          console.log(error);
-      });
+    var data = {
+      date: date,
+      name: name,
+      email: email,
+      ai: ai
+    };
+
+    var key = firebase.database().ref().child('Technology').push().key;
+    console.log(key);
+    keyArray.push(key);
+
+    var updates = {};
+    updates['Technology/'+key] = data;
+    console.log('Updated');
+    return firebase.database().ref().update(updates);
+
+    //ENDS HERE
+
   }
 
   $scope.saveData = function (email) {
-      saveData($scope.input.name, $scope.input.email);
+      saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai);
    }
   $scope.getAllData = function () {
        getAllData();
