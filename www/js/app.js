@@ -85,30 +85,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 });
 
-
-function scanBarcode() {
-    window.plugins.barcodeScanner.scan( function(result) {
-        if(result.cancelled)
-        {
-            alert('You cancelled the scan... loser');
-        }
-        else
-        {
-            var text = result.text;
-            firebase.database().ref('Technology/Assets/').once('value', function(snapshot) {
-              //TODO: check if result.text exists in this fucking db.
-              // Find out how many items are in this db.
-              alert(snapshot.val().AppleA);
-
-            });
-
-            // var asset = document.getElementById('asset');
-            // asset.innerHTML = result.text;
-            // alert('Asset identified.');
-
-        }}, function(error) {
-            alert("Scanning failed: " + error);
-        }
-  );
-
-}
+// function customAlert(title, template) {
+//   var alertPop = $ionicPopup.alert({
+//     title: title,
+//     template: template
+//   });
+// }

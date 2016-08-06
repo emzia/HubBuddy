@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('deployDetailCtrl', function($scope, $stateParams, Deployments, $firebase) {
+.controller('deployDetailCtrl', function($scope, $stateParams, Deployments, $firebase, $ionicPopup) {
   $scope.deploy = Deployments.get($stateParams.deployId); //deployment type: Technology, Pool Hall, etc.
   //var BackHub = monaca.cloud.Collection("Technology");
   //console.log(BackHub);
@@ -30,19 +30,18 @@ angular.module('starter.controllers', [])
       });
   }
 
-  function saveData(date, name, email, ai) {
-    var keyArray = [];
+  function saveData(date, name, email, ai, asset) {
 
     var data = {
       date: date,
       name: name,
       email: email,
-      ai: ai
+      ai: ai,
+      asset: asset
     };
 
     var key = firebase.database().ref().child('Technology').push().key;
     console.log(key);
-    keyArray.push(key);
 
     var updates = {};
     updates['Technology/'+key] = data;
@@ -53,12 +52,62 @@ angular.module('starter.controllers', [])
 
   }
 
-  $scope.saveData = function (email) {
-      saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai);
-   }
+  function customAlert(title, template) {
+    var alertPop = $ionicPopup.alert({
+      title: title,
+      template: template
+    });
+  }
+
+  $scope.saveData = function () {
+    var asset = document.getElementById('asset').innerHTML;
+    if(asset == '') {
+      customAlert('HubBuddy says: ', 'Try Scan QR Code Again.');
+      // alert('Try Scan QR Code Again');
+    } else {
+      saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, asset);
+    }
+  }
+
   $scope.getAllData = function () {
-       getAllData();
-   }
+     getAllData();
+  }
+
+ $scope.scanBarcode = function() {
+     window.plugins.barcodeScanner.scan( function(result) {
+         if(result.cancelled)
+         {
+             customAlert('HubBuddy says: ', 'You cancelled the scan... loser');
+         }
+         else
+         {
+             var text = result.text;
+             var asset = document.getElementById('asset');
+             firebase.database().ref('Technology/Assets/' + text).once('value', function(snapshot) {
+               //TODO: check if result.text exists in this fucking db.
+               // Find out how many items are in this db.
+               if(snapshot.val() !== null) {
+                 console.log(snapshot.val());
+                 asset.innerHTML = text;
+                 customAlert('HubBuddy says: ', 'Asset Identified.');
+               } else {
+                 asset.innerHTML = '';
+                 customAlert('HubBuddy says: ', 'Asset cannot be identified. Try again.');
+               }
+
+             });
+
+             // var asset = document.getElementById('asset');
+             // asset.innerHTML = result.text;
+             // alert('Asset identified.');
+
+         }}, function(error) {
+             alert("Scanning failed: " + error);
+         }
+   );
+
+ }
+
 
 
 })
