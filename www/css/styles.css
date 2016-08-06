@@ -5,19 +5,32 @@ body{
     font-family:Teko;
     font-size:18px;
 }
+ion-content,padding.scroll-content.ionic-scroll.has-header.has-tabs {
+    background-image: url('../img/bg.jpg');
+}
+
+#building{
+  width:100%;
+}
 .bar.bar-stable {
-    height:60px;
+    height:90px !important;
+    background: black;
+}
+#hometxt{
+  font-size: 23px;
+  padding: 15px;
 }
 #logo {
     width:30%;
     float:left;
     padding:10px;
 }
+
 .bar.bar-stable .title {
     font-family:Pacifico;
     font-size:30px;
     text-shadow: 1px 1px 10px black;
-    color:black;
+    color:white;
     height:60px;
 }
 .bar .title{
