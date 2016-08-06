@@ -4,11 +4,10 @@ angular.module('starter.services', [])
 .factory('Deployments', function () {
     // Might use a resource here that returns a JSON array
 
-    // Some fake testing data
     var Deployments = [{
         id: 0,
-        name: 'Technology Equipment',
-        lastText: 'Chargers, HDMI Cables, VGA Cables...',
+        name: 'Technology, Sports, & Board Games',
+        lastText: 'Ask for their Wentworth ID!',
         icon: 'img/technology.png'
     }, {
         id: 1,
