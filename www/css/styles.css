@@ -13,8 +13,9 @@ ion-content,padding.scroll-content.ionic-scroll.has-header.has-tabs {
   width:100%;
 }
 .bar.bar-stable {
-    height:90px !important;
+    height:10% !important;
     background: black;
+    position: fixed;
 }
 #hometxt{
   font-size: 23px;
