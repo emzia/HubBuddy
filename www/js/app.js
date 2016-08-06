@@ -94,11 +94,11 @@ function scanBarcode() {
         }
         else
         {
-            alert(result);
-            console.log(result);
-            console.log(result.text);
-            console.log(JSON.stringify(result));
-            
+            // alert(result.text);
+            var asset = document.getElementById('asset');
+            asset.innerHTML = result.text;
+            alert('Bitch please');
+
         }}, function(error) {
             alert("Scanning failed: " + error);
         }

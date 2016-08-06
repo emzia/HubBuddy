@@ -30,15 +30,14 @@ angular.module('starter.controllers', [])
       });
   }
 
-  function saveData(date, name, email, ai, asset) {
+  function saveData(date, name, email, ai) {
     var keyArray = [];
 
     var data = {
       date: date,
       name: name,
       email: email,
-      ai: ai,
-      asset: asset
+      ai: ai
     };
 
     var key = firebase.database().ref().child('Technology').push().key;
@@ -55,7 +54,7 @@ angular.module('starter.controllers', [])
   }
 
   $scope.saveData = function (email) {
-      saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, $scope.input.asset);
+      saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai);
    }
   $scope.getAllData = function () {
        getAllData();
