@@ -94,7 +94,11 @@ function scanBarcode() {
         }
         else
         {
-            alert(JSON.stringify(result));
+            alert(result);
+            console.log(result);
+            console.log(result.text);
+            console.log(JSON.stringify(result));
+            
         }}, function(error) {
             alert("Scanning failed: " + error);
         }
