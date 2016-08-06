@@ -94,10 +94,17 @@ function scanBarcode() {
         }
         else
         {
-            // alert(result.text);
-            var asset = document.getElementById('asset');
-            asset.innerHTML = result.text;
-            alert('Bitch please');
+            var text = result.text;
+            firebase.database().ref('Technology/Assets/').once('value', function(snapshot) {
+              //TODO: check if result.text exists in this fucking db.
+              // Find out how many items are in this db.
+              alert(snapshot.val().AppleA);
+
+            });
+
+            // var asset = document.getElementById('asset');
+            // asset.innerHTML = result.text;
+            // alert('Asset identified.');
 
         }}, function(error) {
             alert("Scanning failed: " + error);
