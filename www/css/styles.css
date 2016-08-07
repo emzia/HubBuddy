@@ -11,6 +11,11 @@ ion-content,padding.scroll-content.ionic-scroll.has-header.has-tabs {
 
 #building{
   width:100%;
+  border: 12px solid black;
+}
+.item-divider{
+  background: black;
+  font-size: 20px;
 }
 .bar.bar-stable {
     height:10% !important;
@@ -78,7 +83,6 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
     color:red;
     font-size:18px;
 }
-
 .button {
   background:linear-gradient(to bottom, #db0c16 , black 80%, #db0c16);
   font-family:Fredoka One;
@@ -106,4 +110,18 @@ div.check-div {
 
 tbody#tbody {
   text-align: center;
+}
+
+.item-button-right, a.item.item-button-right, button.item.item-button-right{
+ color: black;
+ padding-right:20px;
+}
+
+#attendance{
+  text-transform: uppercase;
+  display: inline-block;
+  float:right;
+  background-color: #E6E6E6;
+  border-radius: 5px;
+  padding: 0px 10px 0px 10px;
 }
