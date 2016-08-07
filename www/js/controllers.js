@@ -24,6 +24,9 @@ angular.module('starter.controllers', [])
   //console.log(BackHub);
    // Intialize the "[DEFAULT]" App
   $scope.input = {};
+
+  var asset_name;
+
   function getAllData() {
       firebase.database().ref('Technology/').on('value', function (snapshot) {
           // console.log(snapshot.val());
@@ -69,14 +72,21 @@ angular.module('starter.controllers', [])
       saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, asset, $scope.input.witid);
     }
 
-    // $scope.text //QR code name
+    firebase.database().ref('Technology/Assets/' + asset_name + '/status').once('value', function(snapshot) {
+      if(snapshot.val() == 'IN') {
+        firebase.database().ref('Technology/Assets/' + asset_name).update({
+          status: 'OUT'
+        });
+      }
+    });
+
   }
 
   $scope.getAllData = function () {
      getAllData();
   }
 
- $scope.scanBarcode = function() {
+  $scope.scanBarcode = function() {
      window.plugins.barcodeScanner.scan( function(result) {
          if(result.cancelled)
          {
@@ -85,15 +95,16 @@ angular.module('starter.controllers', [])
          else
          {
              $scope.text = result.text;
+             asset_name = result.text;
              var asset = document.getElementById('asset');
-             firebase.database().ref('Technology/Assets/' + $scope.text).once('value', function(snapshot) {
+             firebase.database().ref('Technology/Assets/' + $scope.text + '/name/').once('value', function(snapshot) { //check if this QR code text exists in Assets/
                //TODO: check if result.text exists in this fucking db.
                // Find out how many items are in this db.
-               if(snapshot.val() !== null) {
+               if(snapshot.val() !== null) { //if exists
                  console.log(snapshot.val());
                  asset.innerHTML = $scope.text;
                  customAlert('HubBuddy says: ', 'Asset Identified.');
-               } else {
+               } else { //if not
                  asset.innerHTML = '';
                  customAlert('HubBuddy says: ', 'Asset cannot be identified. Try again.');
                }
@@ -108,10 +119,7 @@ angular.module('starter.controllers', [])
              alert("Scanning failed: " + error);
          }
    );
-
- }
-
-
+  }
 
 })
 
