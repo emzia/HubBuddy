@@ -121,15 +121,44 @@ angular.module('starter.controllers', [])
 .controller('poolCtrl', function($scope, $firebase, $ionicPopup, $state, $stateParams, Deployments) {
   $scope.deploy = Deployments.get($stateParams.deployId);
   $scope.input = {};
+  $scope.poolSticks = [
+    {text: '1'},
+    {text: '2'},
+    {text: '3'}
+  ];
+  $scope.checkItems = {};
+
+  $scope.print = function() {
+    console.log($scope.checkItems);
+  }
   var poolkeyArray = [];
 
-  function saveData(date, name, email, ai, witid) {
+  function saveData(date, name, email, ai, witid, pool1, pool2, pool3) {
+    if($scope.checkItems['1'] == true) {
+      firebase.database().ref('Pool/Assets/Pool1').update({
+        status: 'OUT'
+      });
+    }
+    if($scope.checkItems['2'] == true) {
+      firebase.database().ref('Pool/Assets/Pool2').update({
+        status: 'OUT'
+      });
+    }
+    if($scope.checkItems['3'] == true) {
+      firebase.database().ref('Pool/Assets/Pool3').update({
+        status: 'OUT'
+      });
+    }
+
     var data = {
       date: date,
       name: name,
       email: email,
       ai: ai,
-      witid: witid
+      witid: witid,
+      pool1: pool1,
+      pool2: pool2,
+      pool3: pool3
     };
 
     var key = firebase.database().ref().child('Pool').push().key;
@@ -151,7 +180,34 @@ angular.module('starter.controllers', [])
   }
 
   $scope.saveData = function() {
-    saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, $scope.input.witid);
-    customAlert('HubBuddy says: ', 'Pool Hall info saved to DB.');
+    if($scope.checkItems['1'] == undefined) {
+      $scope.checkItems['1'] = false;
+    }
+    if($scope.checkItems['2'] == undefined) {
+      $scope.checkItems['2'] = false;
+    }
+    if($scope.checkItems['3'] == undefined) {
+      $scope.checkItems['3'] = false;
+    }
+    // console.log($scope.checkItems['1'], $scope.checkItems['2'], $scope.checkItems['3']);
+
+    firebase.database().ref('Pool/Assets').once('value', function(snapshot) {
+      console.log(snapshot.val());
+      if((snapshot.val().Pool1.status == 'OUT' && $scope.checkItems['1'] == true) || (snapshot.val().Pool2.status == 'OUT' && $scope.checkItems['2'] == true) || (snapshot.val().Pool3.status == 'OUT' && $scope.checkItems['3'] == true)) {
+        alert('Pool #1 is out, try other ones');
+      } else if($scope.input.date == undefined || $scope.input.name == undefined || $scope.input.email == undefined || $scope.input.ai == undefined || $scope.input.witid == undefined){
+        alert('Fill out all information needed');
+      } else {
+        saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, $scope.input.witid, $scope.checkItems['1'], $scope.checkItems['2'], $scope.checkItems['3']);
+        customAlert('HubBuddy says: ', 'Pool Hall info saved to DB.');
+        $state.go('tab.Deployments');
+      }
+
+    });
+
+    // saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, $scope.input.witid, $scope.checkItems['1'], $scope.checkItems['2'], $scope.checkItems['3']);
+    // customAlert('HubBuddy says: ', 'Pool Hall info saved to DB.');
+    // $state.go('tab.Deployments');
+
   }
 });
