@@ -4,9 +4,9 @@
         <div class="list">
             <label class="item item-input">
               <span class="input-label">Pool Sticks</span>
-              <ion-checkbox value="1">1</ion-checkbox>
-              <ion-checkbox value="2">2</ion-checkbox>
-              <ion-checkbox value="3">3</ion-checkbox>
+              <ion-checkbox ng-repeat="item in poolSticks" ng-model="checkItems[item.text]" ng-change="print()">
+                {{item.text}}
+              </ion-checkbox>
             </label>
             <label class="item item-input">
                 <span class="input-label">Date</span>
