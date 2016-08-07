@@ -121,8 +121,27 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('Check-InCtrl', function($scope) {
+.controller('Check-InCtrl', function($scope, $stateParams, $firebase, $state, Deployments, $ionicPopup) {
+  $scope.deploy = Deployments.get($stateParams.deployId);
+  $scope.input = {};
   //idk
+  function addRow(asset, checked) {
+    var table = document.getElementById('check');
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    cell1.innerHTML = asset;
+    cell2.innerHTML = checked;
+    cell3.innerHTML = '<input type="text" placeholder="ai" ng-model="input.ai">';
+    cell4.innerHTML = '<input type="datetime-local" placeholder="date" ng-model="input.date">';
+    cell5.innerHTML = '<ion-toggle ng-model="settings.status"></ion-toggle>';
+  }
+
+  addRow('AppleA', 'Joon');
+
 })
 
 .controller('poolCtrl', function($scope, $firebase, $ionicPopup, $state, $stateParams, Deployments) {
@@ -186,6 +205,7 @@ angular.module('starter.controllers', [])
       template: template
     });
   }
+
 
   $scope.saveData = function() {
     if($scope.checkItems['1'] == undefined) {

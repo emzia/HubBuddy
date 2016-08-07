@@ -91,3 +91,19 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
   background:linear-gradient(to bottom, #db0c16 , black 80%, #db0c16);
   height: 30px;
 }
+
+table {
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid;
+}
+
+div.check-div {
+  width: 100%;
+}
+
+tbody#tbody {
+  text-align: center;
+}
