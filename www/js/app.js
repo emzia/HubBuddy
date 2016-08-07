@@ -61,11 +61,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
     .state('tab.deploy-detail', {
-      url: '/Deployments/:deployId',
+      url: '/Deployments/0',
       views: {
         'tab-Deployments': {
           templateUrl: 'templates/deploy-detail.html',
           controller: 'deployDetailCtrl'
+        }
+      }
+    })
+
+    .state('tab.pool', {
+      url: '/Deployments/1',
+      views: {
+        'tab-Deployments': {
+          templateUrl: 'templates/pool.html',
+          controller: 'poolCtrl'
         }
       }
     })
