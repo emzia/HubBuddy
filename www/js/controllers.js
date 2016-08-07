@@ -68,6 +68,7 @@ angular.module('starter.controllers', [])
     } else {
       saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, asset, $scope.input.witid);
     }
+
   }
 
   $scope.getAllData = function () {
@@ -82,14 +83,14 @@ angular.module('starter.controllers', [])
          }
          else
          {
-             var text = result.text;
+             $scope.text = result.text;
              var asset = document.getElementById('asset');
-             firebase.database().ref('Technology/Assets/' + text).once('value', function(snapshot) {
+             firebase.database().ref('Technology/Assets/' + $scope.text).once('value', function(snapshot) {
                //TODO: check if result.text exists in this fucking db.
                // Find out how many items are in this db.
                if(snapshot.val() !== null) {
                  console.log(snapshot.val());
-                 asset.innerHTML = text;
+                 asset.innerHTML = $scope.text;
                  customAlert('HubBuddy says: ', 'Asset Identified.');
                } else {
                  asset.innerHTML = '';
