@@ -124,6 +124,9 @@ angular.module('starter.controllers', [])
 .controller('Check-InCtrl', function($scope, $stateParams, $firebase, $state, Deployments, $ionicPopup) {
   $scope.deploy = Deployments.get($stateParams.deployId);
   $scope.input = {};
+  $scope.settings = {
+    enableFriends: true
+  };
   //idk
   function addRow(asset, checked) {
     var table = document.getElementById('check');
@@ -137,7 +140,7 @@ angular.module('starter.controllers', [])
     cell2.innerHTML = checked;
     cell3.innerHTML = '<input type="text" placeholder="ai" ng-model="input.ai">';
     cell4.innerHTML = '<input type="datetime-local" placeholder="date" ng-model="input.date">';
-    cell5.innerHTML = '<ion-toggle ng-model="settings.status"></ion-toggle>';
+    cell5.innerHTML = '<input type="checkbox" data-role="flipswitch" name="switch" id="switch">';
   }
 
   addRow('AppleA', 'Joon');

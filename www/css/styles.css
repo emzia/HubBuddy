@@ -96,16 +96,8 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
   height: 30px;
 }
 
-table {
-  width: 100%;
-}
-
 th, td {
   border: 1px solid;
-}
-
-div.check-div {
-  width: 100%;
 }
 
 tbody#tbody {
