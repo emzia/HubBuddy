@@ -14,7 +14,11 @@ angular.module('starter.services', [])
         name: 'Pool Hall',
         lastText: 'Who\'s going to win the challenge?!',
         icon: 'img/pool.png'
-
+    }, {
+        id: 2,
+        name: 'Check-In & Return Assets',
+        lastText: 'Don\'t forget to return their ID!',
+        icon: 'img/pool.png'
     }];
 
 

@@ -114,6 +114,10 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('Check-InCtrl', function($scope) {
+  //idk
+})
+
 .controller('poolCtrl', function($scope, $firebase, $ionicPopup, $state, $stateParams, Deployments) {
   $scope.deploy = Deployments.get($stateParams.deployId);
   $scope.input = {};
@@ -150,6 +154,4 @@ angular.module('starter.controllers', [])
     saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, $scope.input.witid);
     customAlert('HubBuddy says: ', 'Pool Hall info saved to DB.');
   }
-
-
 });

@@ -80,6 +80,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
+    .state('tab.check-in', {
+      url: '/Deployments/2',
+      views: {
+        'tab-Deployments': {
+          templateUrl: 'templates/check-in.html',
+          controller: 'Check-InCtrl'
+        }
+      }
+    })
+
   .state('tab.account', {
     url: '/account',
     views: {
