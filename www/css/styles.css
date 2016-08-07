@@ -79,9 +79,15 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
     font-size:18px;
 }
 
-.button{
+.button {
   background:linear-gradient(to bottom, #db0c16 , black 80%, #db0c16);
   font-family:Fredoka One;
   text-transform: uppercase;
   font-size: 11px;
+}
+.item-checkbox {
+  border-radius: 5px;
+  margin-left: 2px;
+  background:linear-gradient(to bottom, #db0c16 , black 80%, #db0c16);
+  height: 30px;
 }
