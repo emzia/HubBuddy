@@ -90,6 +90,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
+    .state('tab.roomcount', {
+      url: '/roomcount',
+      views: {
+        'tab-roomcount': {
+          templateUrl: 'templates/tab-roomcount.html',
+          controller: 'RoomCountCtrl'
+        }
+      }
+    })
+
   .state('tab.records', {
     url: '/records',
     views: {

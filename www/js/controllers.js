@@ -109,6 +109,12 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('RoomCountCtrl', function($scope) {
+  $scope.settings = {
+    enableFriends: true
+  };
+})
+
 .controller('RecordCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
