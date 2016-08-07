@@ -19,39 +19,24 @@
             </label>
             <label class="item item-input">
                 <span class="input-label">Name</span>
-                <input type="text" id="ItemName" ng-model="input.name" required/>
+                <input type="text" ng-model="input.name" required/>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Wentworth ID#</span>
+                <input type="text" placeholder="W00######" ng-model="input.witid" required/>
             </label>
             <label class="item item-input">
                 <span class="input-label">Email</span>
-                <input type="email" id="ItemName" ng-model="input.email" required/>
+                <input type="email" ng-model="input.email" required/>
               </label>
               <label class="item item-input">
                   <span class="input-label">Assistant Initials</span>
                   <input type="text" id="a_initial" ng-model="input.ai" required/>
               </label>
           </div>
-      <button ng-click="saveData()" class="button button-full button-assertive">
-           button-assertive
-        </button>
-        <button ng-click="getAllData()" class="button button-assertive">
-            Get The Shit
-        </button>
-        <ion-list>
-
-            <ion-item ng-repeat="item in getAllData()" class="item-remove-animate">
-                Item {{ item[0].email }}
-                <ion-delete-button class="ion-minus-circled">
-                </ion-delete-button>
-                <ion-option-button class="button-assertive">
-                    Edit
-                </ion-option-button>
-                <ion-option-button class="button-positive">
-                    Del
-                </ion-option-button>
-                <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
-            </ion-item>
-
-        </ion-list>
+          <button ng-click="saveData()" class="button button-full button-assertive">
+              Submit
+          </button>
 
     </p>
   </ion-content>

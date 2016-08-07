@@ -14,16 +14,7 @@ angular.module('starter.services', [])
         name: 'Pool Hall',
         lastText: 'Who\'s going to win the challenge?!',
         icon: 'img/pool.png'
-    }, {
-        id: 2,
-        name: 'Sports',
-        lastText: 'Basketball, Soccer, Frisbees...',
-        icon: 'img/sports.png'
-    }, {
-        id: 3,
-        name: 'Board Games',
-        lastText: 'Checkmate, mate.',
-        icon: 'img/boardg.png'
+
     }];
 
 

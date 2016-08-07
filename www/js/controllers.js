@@ -30,14 +30,15 @@ angular.module('starter.controllers', [])
       });
   }
 
-  function saveData(date, name, email, ai, asset) {
+  function saveData(date, name, email, ai, asset, witid) {
 
     var data = {
       date: date,
       name: name,
       email: email,
       ai: ai,
-      asset: asset
+      asset: asset,
+      witid: witid
     };
 
     var key = firebase.database().ref().child('Technology').push().key;
@@ -65,7 +66,7 @@ angular.module('starter.controllers', [])
       customAlert('HubBuddy says: ', 'Try Scan QR Code Again.');
       // alert('Try Scan QR Code Again');
     } else {
-      saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, asset);
+      saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, asset, $scope.input.witid);
     }
   }
 
