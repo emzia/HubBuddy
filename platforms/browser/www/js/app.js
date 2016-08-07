@@ -73,9 +73,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab.account', {
     url: '/account',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-records': {
+        templateUrl: 'templates/tab-records.html',
+        controller: 'RecordCtrl'
       }
     }
   });

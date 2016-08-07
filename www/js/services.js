@@ -8,7 +8,7 @@ angular.module('starter.services', [])
         id: 0,
         name: 'Technology, Sports, & Board Games',
         lastText: 'Ask for their Wentworth ID!',
-        icon: 'img/technology.png'
+        icon: 'img/deploy.png'
     }, {
         id: 1,
         name: 'Pool Hall',
@@ -18,7 +18,7 @@ angular.module('starter.services', [])
         id: 2,
         name: 'Check-In & Return Assets',
         lastText: 'Don\'t forget to return their ID!',
-        icon: 'img/pool.png'
+        icon: 'img/checkin.png'
     }];
 
 
