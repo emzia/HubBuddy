@@ -69,6 +69,7 @@ angular.module('starter.controllers', [])
       saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, asset, $scope.input.witid);
     }
 
+    // $scope.text //QR code name
   }
 
   $scope.getAllData = function () {
