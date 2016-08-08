@@ -1,4 +1,28 @@
-<ion-view view-title="deployLog">
+<ion-view view-title="Deployment Logs">
   <ion-content>
+    <ion-content class="padding">
+      <div class="container">
+        <div class="row">
+          <div class="check-div">
+              <table class="table" id="DEPLOYLOG">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Asset</th>
+                  <th>Check-Out Date</th>
+                  <th>A.I.</th>
+                  <th>Check-In Date</th>
+                  <th>A.I.</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+              </tbody>
+            </table><br>
+            <p style="color:gray;">A.I. = Initals of attendant that is checking the asset back in.</p>
+          </div>
+        </div>
+      </div>
+      <!-- this will contain a table of the currently checked-out assets with STATUS === OUT in firebase -->
+    </ion-content>
   </ion-content>
 </ion-view>

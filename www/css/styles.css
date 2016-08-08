@@ -30,7 +30,6 @@ ion-content,padding.scroll-content.ionic-scroll.has-header.has-tabs {
     width:30%;
     float:left;
     padding:10px 30px 10px 10px;
-
 }
 .bar-stable .button.button-clear{
   color: white;
@@ -120,78 +119,21 @@ tbody#tbody {
   border-radius: 5px;
   padding: 0px 10px 0px 10px;
 }
-
 input.checkin {
   width: 100%;
 }
-
-.cmn-toggle {
-  position: absolute;
-  margin-left: -9999px;
-  visibility: hidden;
-}
-
-.cmn-toggle + label {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-}
-
-input.cmn-toggle-round + label {
-  padding: 2px;
-  width: 65px;
-  height: 25px;
-  background-color: #dddddd;
-  border-radius: 60px;
-}
-
-input.cmn-toggle-round + label::before,
-input.cmn-toggle-round + label::after {
-  display: block;
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  bottom: 1px;
-  content: "";
-}
-
-select, input.cmn-toggle-round + label::before {
-  right: 1px;
-  background-color: #f1f1f1;
-  border-radius: 60px;
-  transition: background 0.4s;
-  font: inherit;
-}
-
-input.cmn-toggle-round + label::after {
-  width: 25px;
-  background-color: #fff;
-  border-radius: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  transition: margin 0.4s;
-}
-
-input.cmn-toggle-round:checked + label::before {
-  background-color: #8ce196;
-}
-
-input.cmn-toggle-round:checked + label::after {
-  margin-left: 35px;
-}
-
 #check th{
   background:linear-gradient(to bottom, #db0c16 , black 80%, #db0c16);
   color: white;
   margin-left: auto;
   margin-right: auto;
 }
-
+.scroll-content{
+  overflow: visible;
+}
 h2{
   font-family: Teko;
 }
-
 #ai{
   /*this is for attendant initals for check-in page*/
   width: 30px;

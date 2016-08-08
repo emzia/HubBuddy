@@ -44,13 +44,13 @@ angular.module('starter.services', [])
 .factory('Records', function() {
   var Records = [{
     id: 0,
-    name: 'Technology Logs',
-    lastText: 'LOGZ',
+    name: 'Deployment Logs',
+    lastText: 'Technology, Sports, Board Games, and Pool Equipment',
     icon: 'img/deploy.png'
   }, {
     id: 1,
-    name: 'Pool Logs',
-    lastText: 'POOL LOGZ',
+    name: 'Room Count Logs',
+    lastText: 'Students hanging around Beatty ~',
     icon: 'img/pool.png'
   }];
 
