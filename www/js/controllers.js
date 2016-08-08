@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
       witid: witid
     };
     var updates = {};
-    updates['Technology/'+date] = data;
+    updates['Technology/Logs/'+date] = data;
     return firebase.database().ref().update(updates);
     //ENDS HERE
   }
@@ -271,7 +271,7 @@ angular.module('starter.controllers', [])
     };
 
     var updates = {};
-    updates['Pool/'+ date] = data;
+    updates['Pool/Logs/'+ date] = data;
     return firebase.database().ref().update(updates);
     //ENDS HERE
   }
@@ -310,5 +310,11 @@ angular.module('starter.controllers', [])
 
     });
 
+  }
+
+  $scope.resetDB = function() {
+    firebase.database().ref('Pool').update({
+      Logs: null
+    });
   }
 });
