@@ -51,7 +51,7 @@ angular.module('starter.controllers', [])
 
   $scope.saveData = function () {
     var asset = document.getElementById('asset').innerHTML;
-    if(asset == '') {
+    if(asset == '') { //if this QR code's text is not matching any asset on DB
       customAlert('HubBuddy says: ', 'Try Scan QR Code Again.');
       // alert('Try Scan QR Code Again');
     } else if($scope.input.date == undefined || $scope.input.name == undefined || $scope.input.email == undefined || $scope.input.ai == undefined || $scope.input.witid == undefined) {
@@ -61,7 +61,8 @@ angular.module('starter.controllers', [])
       firebase.database().ref('Technology/Assets/' + asset_name + '/status').once('value', function(snapshot) {
         if(snapshot.val() == 'IN') {
           firebase.database().ref('Technology/Assets/' + asset_name).update({
-            status: 'OUT'
+            status: 'OUT',
+            user: $scope.input.name
           });
         }
       });
@@ -83,13 +84,15 @@ angular.module('starter.controllers', [])
              $scope.text = result.text;
              asset_name = result.text;
              var asset = document.getElementById('asset');
-             firebase.database().ref('Technology/Assets/' + $scope.text + '/name/').once('value', function(snapshot) { //check if this QR code text exists in Assets/
+             firebase.database().ref('Technology/Assets/' + $scope.text).once('value', function(snapshot) { //check if this QR code text exists in Assets/
                //TODO: check if result.text exists in this fucking db.
                // Find out how many items are in this db.
-               if(snapshot.val() !== null) { //if exists
-                 console.log(snapshot.val());
+               if(snapshot.val().name !== null) { //if exists
+                 console.log(snapshot.val().name);
                  asset.innerHTML = $scope.text;
                  customAlert('HubBuddy says: ', 'Asset Identified.');
+               } else if(snapshot.val().status == 'OUT') { //if this asset's status is OUT
+                 customAlert('HubBuddy says: ', 'Asset is OUT, try other ones.');
                } else { //if not
                  asset.innerHTML = '';
                  customAlert('HubBuddy says: ', 'Asset cannot be identified. Try again.');
@@ -124,9 +127,6 @@ angular.module('starter.controllers', [])
 .controller('Check-InCtrl', function($scope, $stateParams, $firebase, $state, Deployments, $ionicPopup) {
   $scope.deploy = Deployments.get($stateParams.deployId);
   $scope.input = {};
-  $scope.settings = {
-    enableFriends: true
-  };
   //idk
   function addRow(asset, checked) {
     var table = document.getElementById('check');
@@ -138,12 +138,53 @@ angular.module('starter.controllers', [])
     var cell5 = row.insertCell(4);
     cell1.innerHTML = asset;
     cell2.innerHTML = checked;
-    cell3.innerHTML = '<input type="text" id="ai" placeholder="ai" ng-model="input.ai">';
-    cell4.innerHTML = '<input type="datetime-local" placeholder="date" ng-model="input.date">';
-    cell5.innerHTML = '<input type="checkbox" data-role="flipswitch" name="switch" id="switch">';
+    cell3.innerHTML = '<input class="checkin" type="text" placeholder="ex) JP" ng-model="input.ai">';
+    cell4.innerHTML = '<input class="checkin" type="datetime-local" placeholder="date" ng-model="input.date">';
+    // cell5.innerHTML = '<div class="switch"><input class="cmn-toggle cmn-toggle-round" type="checkbox" id="cmn-toggle-1">' +
+    //                   '<label for="cmn-toggle-1"></label></div>';
+    cell5.innerHTML = '<select name="switch" id="checkin-switch-'+asset+'" data-role="slider" data-mini="true">' +
+                      '<option value="out">OUT</option>' +
+                      '<option value="in">IN</option>' +
+                      '</select>';
+
+    $('#checkin-switch-'+asset).change(function() {
+      console.log(this.value); //value after changed.
+      firebase.database().ref('Pool/Assets/' + asset).once('value', function(snapshot) {
+        console.log(snapshot.val().status); //this should be OUT all the time.
+
+        firebase.database().ref('Pool/Assets/' + asset).update({ //change to IN
+          status: 'IN',
+          user: ''
+        });
+
+        //delete this row.
+        $('#checkin-switch-'+asset).closest('tr').remove();
+
+      });
+    });
+
   }
 
-  addRow('AppleA', 'Joon');
+  //get all assets and fill the table
+  function createTable(asset) {
+    var user, name;
+    //get data from Pool/Assets/ + asset name
+    firebase.database().ref('Pool/Assets/' + asset).once('value', function(snapshot) {
+      user = snapshot.val().user; //the one who checked out
+      name = snapshot.val().name; //the name of the asset
+      if(snapshot.val().status == 'IN') {
+        //don't fill
+      } else { //asset is out, fill the row
+        addRow(name, user);
+      }
+    });
+>>>>>>> 3ac81b7f5acaf5adfcf9e031da70f59aea112b09
+  }
+
+  //manually type asset name to this function.. let's find a way to auto this.
+  createTable('Pool3');
+
+  // addRow('AppleA', 'Joon');
 
 })
 
@@ -166,17 +207,20 @@ angular.module('starter.controllers', [])
     //THESE IF STATEMENTS UPDATE STATUSES TO OUT
     if($scope.checkItems['1'] == true) {
       firebase.database().ref('Pool/Assets/Pool1').update({
-        status: 'OUT'
+        status: 'OUT',
+        user: name
       });
     }
     if($scope.checkItems['2'] == true) {
       firebase.database().ref('Pool/Assets/Pool2').update({
-        status: 'OUT'
+        status: 'OUT',
+        user: name
       });
     }
     if($scope.checkItems['3'] == true) {
       firebase.database().ref('Pool/Assets/Pool3').update({
-        status: 'OUT'
+        status: 'OUT',
+        user: name
       });
     }
 
