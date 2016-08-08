@@ -1,26 +1,12 @@
 <ion-view view-title="Room Count Log">
     <ion-content class="padding">
-      <div class="container">
-        <div class="row">
-          <div class="check-div">
-              <table class="table" id="DEPLOYLOG">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Room Number</th>
-                  <th>Amount of People</th>
-                  <th>M.I.</th>
-                </tr>
-              </thead>
-              <tbody id="tbody">
-              </tbody>
-            </table><br>
-            <p style="color:gray;">M.I. = Initals of manager that is performing room count.</p>
-          </div>
-        </div>
-      </div>
       <a href="https://hubbuddydb.firebaseio.com/RoomCount" class="button button-full button-assertive">
-          Submit
-      </a>
-      </ion-content>
+          ACCESS DATABASE
+      </a><br>
+      <p>When accessing the Firebase database, you can have full control of adding/deleting/editing items,
+        making it very dangerous.  For security and protection purposes, you must first acquire permission
+        to access the database, so that may be a reason why you might not be able to access the linked button.</p>
+      <p>To retrieve data from this database, click on the more options icon (with three dots) at the
+        right corner to EXPORT JSON data.  The room count database logs will be downloaded to your computer.</p>
+    </ion-content>
 </ion-view>

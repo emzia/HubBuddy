@@ -1,28 +1,12 @@
 <ion-view view-title="Deployment Logs">
-  <ion-content>
     <ion-content class="padding">
-      <div class="container">
-        <div class="row">
-          <div class="check-div">
-              <table class="table" id="DEPLOYLOG">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Asset</th>
-                  <th>Check-Out <br>Date</th>
-                  <th>Check-Out <br>A.I.</th>
-                  <th>Check-In <br>Date</th>
-                  <th>Check-In <br>A.I.</th>
-                </tr>
-              </thead>
-              <tbody id="tbody">
-              </tbody>
-            </table><br>
-            <p style="color:gray;">A.I. = Initals of attendant that is checking the asset back in.</p>
-          </div>
-        </div>
-      </div>
-      <!-- this will contain a table of the currently checked-out assets with STATUS === OUT in firebase -->
-    </ion-content>
+      <a href="https://hubbuddydb.firebaseio.com/Technology" class="button button-full button-assertive">
+          ACCESS DATABASE
+      </a><br>
+      <p>When accessing the Firebase database, you can have full control of adding/deleting/editing items,
+        making it very dangerous.  For security and protection purposes, you must first acquire permission
+        to access the database, so that may be a reason why you might not be able to access the linked button.</p>
+      <p>To retrieve data from this database, click on the more options icon (with three dots) at the
+        right corner to EXPORT JSON data.  The deployment database logs will be downloaded to your computer.</p>
   </ion-content>
 </ion-view>
