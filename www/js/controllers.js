@@ -151,7 +151,7 @@ angular.module('starter.controllers', [])
   $scope.deploy = Deployments.get($stateParams.deployId);
   $scope.input = {};
   //idk
-  function addRow(asset, checked) {
+  function addRow(category, asset, checkedby) {
     var table = document.getElementById('check');
     var row = table.insertRow(1);
     var cell1 = row.insertCell(0);
@@ -160,9 +160,9 @@ angular.module('starter.controllers', [])
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
     cell1.innerHTML = asset;
-    cell2.innerHTML = checked;
-    cell3.innerHTML = '<input class="checkin" type="text" id="ai" placeholder="JP" ng-model="input.ai">';
-    cell4.innerHTML = '<input class="checkin" type="datetime-local" placeholder="date" ng-model="input.date">';
+    cell2.innerHTML = checkedby;
+    cell3.innerHTML = '<input class="checkin" type="text" id="'+asset+'-ai" placeholder="ex) JP" ng-model="input.ai">';
+    cell4.innerHTML = '<input class="checkin" type="datetime-local" id="'+asset+'-date" placeholder="date" ng-model="input.date">';
     // cell5.innerHTML = '<div class="switch"><input class="cmn-toggle cmn-toggle-round" type="checkbox" id="cmn-toggle-1">' +
     //                   '<label for="cmn-toggle-1"></label></div>';
     cell5.innerHTML = '<select name="switch" id="checkin-switch-'+asset+'" data-role="slider" data-mini="true">' +
@@ -171,13 +171,19 @@ angular.module('starter.controllers', [])
                       '</select>';
 
     $('#checkin-switch-'+asset).change(function() {
-      console.log(this.value); //value after changed.
-      firebase.database().ref('Pool/Assets/' + asset).once('value', function(snapshot) {
+      console.log(this.value); //checkbox's value after changed.
+      firebase.database().ref(category + '/Assets/' + asset).once('value', function(snapshot) {
         console.log(snapshot.val().status); //this should be OUT all the time.
 
-        firebase.database().ref('Pool/Assets/' + asset).update({ //change to IN
+        //checking in.
+        //TODO: Change status to IN, save AI and date to this table, empty the user
+        var assetAi = asset + '-ai';
+        var assetDate = asset + '-date';
+        firebase.database().ref(category + '/Assets/' + asset).update({
           status: 'IN',
-          user: ''
+          user: '',
+          AI: document.getElementById(assetAi).value,
+          checkedinDate: document.getElementById(assetDate).value
         });
 
         //delete this row.
@@ -189,22 +195,29 @@ angular.module('starter.controllers', [])
   }
 
   //get all assets and fill the table
-  function createTable(asset) {
-    var user, name;
+  function createTable(category, asset) {
     //get data from Pool/Assets/ + asset name
-    firebase.database().ref('Pool/Assets/' + asset).once('value', function(snapshot) {
-      user = snapshot.val().user; //the one who checked out
-      name = snapshot.val().name; //the name of the asset
-      if(snapshot.val().status == 'IN') {
-        //don't fill
-      } else { //asset is out, fill the row
-        addRow(name, user);
+    firebase.database().ref(category + '/Assets/' + asset).once('value', function(snapshot) {
+      console.log(snapshot.val());
+      if(snapshot.val() !== null) {
+        var user = snapshot.val().user;
+        var name = snapshot.val().name;
+        if(snapshot.val().status == 'IN') {
+          //don't fill
+        } else {
+          addRow(category, name, user);
+        }
       }
     });
   }
 
   //manually type asset name to this function.. let's find a way to auto this.
-  createTable('Pool3');
+  createTable('Technology', 'AppleA');
+  createTable('Technology', 'Basketball');
+  createTable('Technology', 'LenovoA');
+  createTable('Pool', 'Pool1');
+  createTable('Pool', 'Pool2');
+  createTable('Pool', 'Pool3');
 
   // addRow('AppleA', 'Joon');
 
