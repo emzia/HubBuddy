@@ -40,7 +40,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   // Each tab has its own nav history stack:
-
+  //HOME TAB
   .state('tab.home', {
     url: '/home',
     views: {
@@ -51,6 +51,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+  //DEPLOYMENT TAB
   .state('tab.Deployments', {
       url: '/Deployments',
       views: {
@@ -69,7 +70,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
-
     .state('tab.pool', {
       url: '/Deployments/1',
       views: {
@@ -79,7 +79,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
-
     .state('tab.check-in', {
       url: '/Deployments/2',
       views: {
@@ -90,16 +89,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    .state('tab.roomcount', {
-      url: '/roomcount',
-      views: {
-        'tab-roomcount': {
-          templateUrl: 'templates/tab-roomcount.html',
-          controller: 'RoomCountCtrl'
-        }
+  //ROOMCOUNT TAB
+  .state('tab.roomcount', {
+    url: '/roomcount',
+    views: {
+      'tab-roomcount': {
+        templateUrl: 'templates/tab-roomcount.html',
+        controller: 'RoomCountCtrl'
       }
-    })
+    }
+  })
 
+  //RECORDS TAB
   .state('tab.records', {
     url: '/records',
     views: {

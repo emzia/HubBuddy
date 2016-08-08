@@ -142,9 +142,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RecordCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+
 })
 
 .controller('Check-InCtrl', function($scope, $stateParams, $firebase, $state, Deployments, $ionicPopup) {
