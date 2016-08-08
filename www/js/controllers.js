@@ -138,7 +138,7 @@ angular.module('starter.controllers', [])
     var cell5 = row.insertCell(4);
     cell1.innerHTML = asset;
     cell2.innerHTML = checked;
-    cell3.innerHTML = '<input type="text" placeholder="ai" ng-model="input.ai">';
+    cell3.innerHTML = '<input type="text" id="ai" placeholder="ai" ng-model="input.ai">';
     cell4.innerHTML = '<input type="datetime-local" placeholder="date" ng-model="input.date">';
     cell5.innerHTML = '<input type="checkbox" data-role="flipswitch" name="switch" id="switch">';
   }

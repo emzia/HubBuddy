@@ -98,17 +98,19 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 
 th, td {
   border: 1px solid;
+  padding: 10px;
+  width: auto;
 }
-
+#ai{
+  width: 50px;
+}
 tbody#tbody {
   text-align: center;
 }
-
 .item-button-right, a.item.item-button-right, button.item.item-button-right{
  color: black;
  padding-right:20px;
 }
-
 #attendance{
   text-transform: uppercase;
   display: inline-block;
