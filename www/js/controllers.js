@@ -138,7 +138,7 @@ angular.module('starter.controllers', [])
     var cell5 = row.insertCell(4);
     cell1.innerHTML = asset;
     cell2.innerHTML = checked;
-    cell3.innerHTML = '<input class="checkin" type="text" placeholder="ex) JP" ng-model="input.ai">';
+    cell3.innerHTML = '<input class="checkin" type="text" id="ai" placeholder="ex) JP" ng-model="input.ai">';
     cell4.innerHTML = '<input class="checkin" type="datetime-local" placeholder="date" ng-model="input.date">';
     // cell5.innerHTML = '<div class="switch"><input class="cmn-toggle cmn-toggle-round" type="checkbox" id="cmn-toggle-1">' +
     //                   '<label for="cmn-toggle-1"></label></div>';
@@ -178,7 +178,6 @@ angular.module('starter.controllers', [])
         addRow(name, user);
       }
     });
->>>>>>> 3ac81b7f5acaf5adfcf9e031da70f59aea112b09
   }
 
   //manually type asset name to this function.. let's find a way to auto this.

@@ -106,6 +106,7 @@ th, td {
 }
 tbody#tbody {
   text-align: center;
+  border-radius: 5px;
 }
 .item-button-right, a.item.item-button-right, button.item.item-button-right{
  color: black;
@@ -177,4 +178,18 @@ input.cmn-toggle-round:checked + label::before {
 
 input.cmn-toggle-round:checked + label::after {
   margin-left: 35px;
+}
+
+#check th{
+  background:linear-gradient(to bottom, #db0c16 , black 80%, #db0c16);
+  color: white;
+}
+
+h2{
+  font-family: Teko;
+}
+
+#ai{
+  /*this is for attendant initals for check-in page*/
+  width: 30px;
 }
