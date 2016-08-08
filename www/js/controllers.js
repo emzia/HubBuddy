@@ -174,7 +174,7 @@ angular.module('starter.controllers', [])
     function createTable(category, asset) {
       //get data from Pool/Assets/ + asset name
       firebase.database().ref(category + '/Assets/' + asset).once('value', function(snapshot) {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         if(snapshot.val() !== null) {
           var user = snapshot.val().user;
           var name = snapshot.val().name;
@@ -188,6 +188,13 @@ angular.module('starter.controllers', [])
     }
 
     //manually type asset name to this function.. let's find a way to auto this.
+    firebase.database().ref('Pool').once('value', function(snapshot) {
+      var i = 0;
+      while(snapshot.val().Logs[Object.keys(snapshot.val().Logs)[i]] !== undefined) {
+        console.log(snapshot.val().Logs[Object.keys(snapshot.val().Logs)[i]]);
+        i++;
+      }
+    });
     createTable('Technology', 'AppleA');
     createTable('Technology', 'Basketball');
     createTable('Technology', 'LenovoA');
@@ -248,7 +255,7 @@ angular.module('starter.controllers', [])
 // 
 })
 
-.controller('Check-InCtrl', function($scope, $stateParams, $firebase, $state, Deployments, $ionicPopup) {
+.controller('Check-InCtrl', function($scope, $stateParams, $firebase, $state, Deployments, $ionicPopup, $rootScope) {
   $scope.deploy = Deployments.get($stateParams.deployId);
   $scope.input = {};
   //idk
@@ -285,7 +292,16 @@ angular.module('starter.controllers', [])
           user: '',
           checkedinAI: document.getElementById(assetAi).value,
           checkedinDate: document.getElementById(assetDate).value
-        });
+        }); //it's updated and data saved into selected asset.
+
+        //TODO: Take that data and save that to log table.
+        // firebase.database().ref('Pool').once('value', function(snapshot) {
+        //   var i = 0;
+        //   while(snapshot.val().Logs[Object.keys(snapshot.val().Logs)[i]] !== undefined) { //loop all logs
+        //     console.log(snapshot.val().Logs[Object.keys(snapshot.val().Logs)[i]]);
+        //     i++;
+        //   }
+        // });
 
         //delete this row.
         $('#checkin-switch-'+asset).closest('tr').remove();
@@ -324,7 +340,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('poolCtrl', function($scope, $firebase, $ionicPopup, $state, $stateParams, Deployments) {
+.controller('poolCtrl', function($scope, $firebase, $ionicPopup, $state, $stateParams, Deployments, $rootScope) {
   $scope.deploy = Deployments.get($stateParams.deployId);
   $scope.input = {};
   $scope.poolSticks = [
@@ -333,20 +349,28 @@ angular.module('starter.controllers', [])
     {text: '3'}
   ];
   $scope.checkItems = {};
-
-  $scope.print = function() {
-    console.log($scope.checkItems);
-  }
-  var poolkeyArray = [];
+  $rootScope.dates = [];
 
   function saveData(date, name, email, ai, witid, pool1, pool2, pool3) {
     //THESE IF STATEMENTS UPDATE STATUSES TO OUT
     if($scope.checkItems['1'] == true) {
+      $rootScope.dates.push(date);
       firebase.database().ref('Pool/Assets/Pool1').update({
         status: 'OUT',
         user: name,
         checkedoutAI: ai
       });
+      var data = {
+        checkedoutAI: ai,
+        name: name,
+        email: email,
+        checkedoutDate: date,
+        witid: witid,
+        checkedoutAsset: 'Pool1'
+      };
+      var updates = {};
+      updates['Pool/Logs/' + date] = data;
+      return firebase.database().ref().update(updates);
     }
     if($scope.checkItems['2'] == true) {
       firebase.database().ref('Pool/Assets/Pool2').update({
@@ -354,6 +378,17 @@ angular.module('starter.controllers', [])
         user: name,
         checkedoutAI: ai
       });
+      var data = {
+        checkedoutAI: ai,
+        name: name,
+        email: email,
+        checkedoutDate: date,
+        witid: witid,
+        checkedoutAsset: 'Pool2'
+      };
+      var updates = {};
+      updates['Pool/Logs/' + date] = data;
+      return firebase.database().ref().update(updates);
     }
     if($scope.checkItems['3'] == true) {
       firebase.database().ref('Pool/Assets/Pool3').update({
@@ -361,34 +396,19 @@ angular.module('starter.controllers', [])
         user: name,
         checkedoutAI: ai
       });
+      var data = {
+        checkedoutAI: ai,
+        name: name,
+        email: email,
+        checkedoutDate: date,
+        witid: witid,
+        checkedoutAsset: 'Pool3'
+      };
+      var updates = {};
+      updates['Pool/Logs/' + date] = data;
+      return firebase.database().ref().update(updates);
     }
 
-    // date.replace(' ', ''); //remove whitespace
-    var stringify = JSON.stringify(date).replace('"','');
-    var year = stringify.substring(0, 4);
-    var month = stringify.substring(5, 7);
-    var date = stringify.substring(8, 10);
-    var temp = stringify.substring(11, 13); //+4 hours
-    console.log(year);
-    console.log(month);
-    console.log(date);
-    console.log(temp, typeof temp);
-    console.log(stringify);
-
-    var data = {
-      date: date,
-      name: name,
-      email: email,
-      ai: ai,
-      witid: witid,
-      pool1: pool1,
-      pool2: pool2,
-      pool3: pool3
-    };
-
-    var updates = {};
-    updates['Pool/Logs/'+ date] = data;
-    return firebase.database().ref().update(updates);
     //ENDS HERE
   }
 
