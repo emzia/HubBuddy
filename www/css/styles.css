@@ -157,11 +157,12 @@ input.cmn-toggle-round + label::after {
   content: "";
 }
 
-input.cmn-toggle-round + label::before {
+select, input.cmn-toggle-round + label::before {
   right: 1px;
   background-color: #f1f1f1;
   border-radius: 60px;
   transition: background 0.4s;
+  font: inherit;
 }
 
 input.cmn-toggle-round + label::after {
@@ -183,6 +184,8 @@ input.cmn-toggle-round:checked + label::after {
 #check th{
   background:linear-gradient(to bottom, #db0c16 , black 80%, #db0c16);
   color: white;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h2{
