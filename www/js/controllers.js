@@ -21,9 +21,7 @@ angular.module('starter.controllers', [])
 .controller('deployDetailCtrl', function($scope, $stateParams, Deployments, $firebase, $ionicPopup, $state) {
   $scope.deploy = Deployments.get($stateParams.deployId); //deployment type: Technology, Pool Hall, etc.
   $scope.input = {};
-
   var asset_name;
-
   function saveData(date, name, email, ai, asset, witid) {
     var data = {
       date: date,
@@ -33,15 +31,11 @@ angular.module('starter.controllers', [])
       asset: asset,
       witid: witid
     };
-
-    var key = firebase.database().ref().child('Technology').push().key;
-
     var updates = {};
-    updates['Technology/'+key] = data;
+    updates['Technology/'+date] = data;
     return firebase.database().ref().update(updates);
     //ENDS HERE
   }
-
   function customAlert(title, template) {
     var alertPop = $ionicPopup.alert({
       title: title,
@@ -66,7 +60,7 @@ angular.module('starter.controllers', [])
           });
         }
       });
-      customAlert('HubBuddy says: ', 'Information saved on DB.');
+      customAlert('HubBuddy says: ', 'Information saved on database.');
       $state.go('tab.Deployments');
     }
 
@@ -112,10 +106,39 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('RoomCountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('RoomCountCtrl', function($scope, $firebase, $ionicPopup, $state, $stateParams) {
+  $scope.input = {};
+  function saveData(date, mi, r8035, r034) {
+    var data = {
+      date: date,
+      mi: mi,
+      r8035: r8035,
+      r034: r034
+    };
+
+    var updates = {};
+    updates['RoomCount/'+ date] = data;
+    return firebase.database().ref().update(updates);
+    //ENDS HERE
+  }
+  $scope.saveData = function() {
+    console.log('save data');
+    if($scope.input.date == undefined || $scope.input.r8035 == undefined || $scope.input.r034 == undefined || $scope.input.mi == undefined) {
+      customAlert('HubBuddy says: ', 'Please fill out all information above.');
+    } else {
+      saveData($scope.input.date,$scope.input.mi,$scope.input.r8035,$scope.input.r034);
+      customAlert('HubBuddy says: ', 'Room count data saved to the database.');
+      $state.go('tab.Deployments');
+    }
+  }
+
+  function customAlert(title, template) {
+    var alertPop = $ionicPopup.alert({
+      title: title,
+      template: template
+    });
+  }
+
 })
 
 .controller('RecordCtrl', function($scope) {
@@ -234,13 +257,8 @@ angular.module('starter.controllers', [])
       pool3: pool3
     };
 
-    var key = firebase.database().ref().child('Pool').push().key;
-    poolkeyArray.push(key);
-    //prob need to save into keyArray for future usage
-    //push -> adds a item in the end of array.
-
     var updates = {};
-    updates['Pool/'+key] = data;
+    updates['Pool/'+ date] = data;
     return firebase.database().ref().update(updates);
     //ENDS HERE
   }
@@ -273,7 +291,7 @@ angular.module('starter.controllers', [])
         customAlert('HubBuddy says: ', 'Fill out all information needed');
       } else {
         saveData($scope.input.date, $scope.input.name, $scope.input.email, $scope.input.ai, $scope.input.witid, $scope.checkItems['1'], $scope.checkItems['2'], $scope.checkItems['3']);
-        customAlert('HubBuddy says: ', 'Pool Hall info saved to DB.');
+        customAlert('HubBuddy says: ', 'Pool Hall info saved to database.');
         $state.go('tab.Deployments');
       }
 
