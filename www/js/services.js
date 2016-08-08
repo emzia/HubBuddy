@@ -39,4 +39,35 @@ angular.module('starter.services', [])
             return null;
         }
     };
+})
+
+.factory('Records', function() {
+  var Records = [{
+    id: 0,
+    name: 'Technology Logs',
+    lastText: 'LOGZ',
+    icon: 'img/deploy.png'
+  }, {
+    id: 1,
+    name: 'Pool Logs',
+    lastText: 'POOL LOGZ',
+    icon: 'img/pool.png'
+  }];
+
+  return {
+    all: function() {
+      return Records;
+    },
+    remove: function(record) {
+      Records.splice(Records.indexOf(record), 1);
+    },
+    get: function(recordId) {
+      for(var i = 0; i < Records.length; i++) {
+        if(Records[i].id === parseInt(recordId)) {
+          return Records[i];
+        }
+      }
+      return null;
+    }
+  };
 });

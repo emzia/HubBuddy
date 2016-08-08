@@ -141,7 +141,19 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('RecordCtrl', function($scope) {
+.controller('RecordCtrl', function($scope, Records) {
+  $scope.Records = Records.all();
+  $scope.remove = function(record) {
+    Records.remove(record);
+  };
+  
+})
+
+.controller('deployLogCtrl', function($scope, $stateParams, Records, $firebase, $ionicPopup, $state) {
+
+})
+
+.controller('poolLogCtrl', function($scope, $stateParams, Records, $firebase, $ionicPopup, $state) {
 
 })
 
@@ -180,7 +192,7 @@ angular.module('starter.controllers', [])
         firebase.database().ref(category + '/Assets/' + asset).update({
           status: 'IN',
           user: '',
-          AI: document.getElementById(assetAi).value,
+          checkedinAI: document.getElementById(assetAi).value,
           checkedinDate: document.getElementById(assetDate).value
         });
 
@@ -241,21 +253,36 @@ angular.module('starter.controllers', [])
     if($scope.checkItems['1'] == true) {
       firebase.database().ref('Pool/Assets/Pool1').update({
         status: 'OUT',
-        user: name
+        user: name,
+        checkedoutAI: ai
       });
     }
     if($scope.checkItems['2'] == true) {
       firebase.database().ref('Pool/Assets/Pool2').update({
         status: 'OUT',
-        user: name
+        user: name,
+        checkedoutAI: ai
       });
     }
     if($scope.checkItems['3'] == true) {
       firebase.database().ref('Pool/Assets/Pool3').update({
         status: 'OUT',
-        user: name
+        user: name,
+        checkedoutAI: ai
       });
     }
+
+    // date.replace(' ', ''); //remove whitespace
+    var stringify = JSON.stringify(date).replace('"','');
+    var year = stringify.substring(0, 4);
+    var month = stringify.substring(5, 7);
+    var date = stringify.substring(8, 10);
+    var temp = stringify.substring(11, 13); //+4 hours
+    console.log(year);
+    console.log(month);
+    console.log(date);
+    console.log(temp, typeof temp);
+    console.log(stringify);
 
     var data = {
       date: date,

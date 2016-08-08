@@ -1,4 +1,16 @@
 <ion-view view-title="Records">
   <ion-content>
+    <img src="img/building.jpg" id="building"/>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="record in Records" type="item-text-wrap" href="#/tab/records/{{record.id}}">
+        <img ng-src="{{record.icon}}">
+        <h2>{{record.name}}</h2>
+        <p>{{record.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="remove(record)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

@@ -107,9 +107,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'tab-records': {
         templateUrl: 'templates/tab-records.html',
         controller: 'RecordCtrl'
+        }
       }
-    }
-  });
+    })
+    .state('tab.deployLog', {
+      url: '/records/0',
+      views: {
+        'tab-records': {
+          templateUrl: 'templates/tab-deployLog.html',
+          controller: 'deployLogCtrl'
+        }
+      }
+    })
+    .state('tab.poolLog', {
+      url: '/records/1',
+      views: {
+        'tab-records': {
+          templateUrl: 'templates/tab-poolLog.html',
+          controller: 'poolLogCtrl'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
