@@ -119,12 +119,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
-    .state('tab.poolLog', {
+    .state('tab.roomcountLog', {
       url: '/records/1',
       views: {
         'tab-records': {
-          templateUrl: 'templates/tab-poolLog.html',
-          controller: 'poolLogCtrl'
+          templateUrl: 'templates/tab-roomcountLog.html',
+          controller: 'roomcountLogCtrl'
         }
       }
     });

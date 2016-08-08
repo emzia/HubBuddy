@@ -8,7 +8,6 @@ body{
 ion-content,padding.scroll-content.ionic-scroll.has-header.has-tabs {
     background-image: url('../img/bg.jpg');
 }
-
 #building{
   width:100%;
   border: 12px solid black;
@@ -45,7 +44,7 @@ ion-content,padding.scroll-content.ionic-scroll.has-header.has-tabs {
     line-height:55px;
 }
 .has-header{
-    top:10%;
+    top:10% !important;
 }
 .item-avatar > img:first-child, .item-avatar .item-image, .item-avatar .item-content > img:first-child,
 .item-avatar .item-content .item-image, .item-avatar-left > img:first-child, .item-avatar-left .item-image,
@@ -122,7 +121,7 @@ tbody#tbody {
 input.checkin {
   width: 100%;
 }
-#check th{
+th{
   background:linear-gradient(to bottom, #db0c16 , black 80%, #db0c16);
   color: white;
   margin-left: auto;

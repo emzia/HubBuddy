@@ -46,12 +46,12 @@ angular.module('starter.services', [])
     id: 0,
     name: 'Deployment Logs',
     lastText: 'Technology, Sports, Board Games, and Pool Equipment',
-    icon: 'img/deploy.png'
+    icon: 'img/logs.png'
   }, {
     id: 1,
     name: 'Room Count Logs',
     lastText: 'Students hanging around Beatty ~',
-    icon: 'img/pool.png'
+    icon: 'img/logs.png'
   }];
 
   return {

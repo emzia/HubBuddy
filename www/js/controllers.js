@@ -199,8 +199,53 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('poolLogCtrl', function($scope, $stateParams, Records, $firebase, $ionicPopup, $state) {
-
+.controller('roomcountLogCtrl', function($scope, $stateParams, Records, $firebase, $ionicPopup, $state) {
+//   $scope.input = {};
+//   //idk
+//   function addRow(date, "Room Number", ) {
+//     var table = document.getElementById('DEPLOYLOG');
+//     var row = table.insertRow(1);
+//     var cell1 = row.insertCell(0);
+//     var cell2 = row.insertCell(1);
+//     var cell3 = row.insertCell(2);
+//     var cell4 = row.insertCell(3);
+//     var cell5 = row.insertCell(4);
+//     var cell6 = row.insertCell(5);
+//     cell1.innerHTML = name;
+//     cell2.innerHTML = asset;
+//     cell3.innerHTML = date; //should be the checkout date
+//     cell4.innerHTML = ai; //checkout ai
+//     cell5.innerHTML = date; //checkin date -- if not checked in, then return "false" may need different var
+//     cell6.innerHTML = ai; //checkin ai -- if not checked in, then return "false" may need different var
+//   }
+//
+//   //get all assets and fill the table
+//   function createTable(category, asset) {
+//     //get data from Pool/Assets/ + asset name
+//     firebase.database().ref(category + '/Assets/' + asset).once('value', function(snapshot) {
+//       console.log(snapshot.val());
+//       if(snapshot.val() !== null) {
+//         var user = snapshot.val().user;
+//         var name = snapshot.val().name;
+//         if(snapshot.val().status == 'OUT') {
+//           //if status is out, then return false for checkin ai+date
+//         } else {
+//           addRow(category, name, user);
+//         }
+//       }
+//     });
+//   }
+//
+//   //manually type asset name to this function.. let's find a way to auto this.
+//   createTable('Technology', 'AppleA');
+//   createTable('Technology', 'Basketball');
+//   createTable('Technology', 'LenovoA');
+//   createTable('Pool', 'Pool1');
+//   createTable('Pool', 'Pool2');
+//   createTable('Pool', 'Pool3');
+//
+//   // addRow('AppleA', 'Joon');
+// 
 })
 
 .controller('Check-InCtrl', function($scope, $stateParams, $firebase, $state, Deployments, $ionicPopup) {
