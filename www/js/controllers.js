@@ -46,7 +46,7 @@ angular.module('starter.controllers', [])
   $scope.saveData = function () {
     var asset = document.getElementById('asset').innerHTML;
     if(asset == '') { //if this QR code's text is not matching any asset on DB
-      customAlert('HubBuddy says: ', 'Try Scan QR Code Again.');
+      customAlert('HubBuddy says: ', 'QR code is not valid.');
       // alert('Try Scan QR Code Again');
     } else if($scope.input.date == undefined || $scope.input.name == undefined || $scope.input.email == undefined || $scope.input.ai == undefined || $scope.input.witid == undefined) {
       customAlert('HubBuddy says: ', 'Fill out all information above.');
