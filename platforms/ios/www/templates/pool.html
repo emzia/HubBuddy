@@ -1,0 +1,38 @@
+<ion-view view-title="Pool Hall">
+  <ion-content class="padding">
+        <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Pool Sticks</span>
+              <ion-checkbox ng-repeat="item in poolSticks" ng-model="checkItems[item.text]" ng-change="print()">
+                {{item.text}}
+              </ion-checkbox>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Date</span>
+                <input type="datetime-local" ng-model="input.date" required/>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Name</span>
+                <input type="text" style="text-transform: capitalize;" ng-model="input.name" required/>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Wentworth ID#</span>
+                <input type="text" placeholder="W00######" maxlength="9" style="text-transform: uppercase" ng-model="input.witid" required/>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="email" placeholder="Any numbers in their @wit.edu email?" ng-model="input.email" required/>
+              </label>
+              <label class="item item-input">
+                  <span class="input-label">Attendant Initials</span>
+                  <input type="text" maxlength="2" style="text-transform: uppercase" id="a_initial" ng-model="input.ai" required/>
+              </label>
+          </div>
+          <button ng-click="saveData()" class="button button-full button-assertive">
+              Submit
+          </button>
+          <!-- <button ng-click="resetDB()" class="button button-full button-assertive">
+            RESET
+          </button> -->
+  </ion-content>
+</ion-view>

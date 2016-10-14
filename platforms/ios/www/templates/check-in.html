@@ -1,0 +1,26 @@
+<ion-view view-title="Check-In & Return Assets">
+  <ion-content class="padding">
+    <div class="container">
+      <div class="row">
+        <div class="check-div">
+          <h2>Currently Checked-Out Assets</h2>
+            <table class="table" id="check">
+            <thead>
+              <tr>
+                <th>Asset</th>
+                <th>Checked out by</th>
+                <th>A.I.</th>
+                <th>Check-In Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+          </table><br>
+          <p style="color:gray;">A.I. = Initals of attendant that is checking the asset back in.</p>
+        </div>
+      </div>
+    </div>
+    <!-- this will contain a table of the currently checked-out assets with STATUS === OUT in firebase -->
+  </ion-content>
+</ion-view>
